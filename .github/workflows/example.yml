@@ -1,0 +1,24 @@
+name: ExampleWorkflow
+
+on: [push]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Azure Login
+      uses: azure/login
+      with:
+        creds: ${{secrets.AZURE_CREDENTIALS}}
+        enable-AzPSSession: true
+        
+    - name: Azure CLI
+      run: |
+        az webapp list --query "[?state=='Running']"
+
+    - name: Azure PowerShell
+      uses: azure/powershell
+      with:
+        azPSVersion: 'latest'
+        inlineScript: |
+          Get-AzVM
