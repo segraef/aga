@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Azure Login
-      uses: azure/login
+      uses: azure/login@v1.1
       with:
         creds: ${{secrets.AZURE_CREDENTIALS}}
         enable-AzPSSession: true
@@ -17,7 +17,7 @@ jobs:
         az webapp list --query "[?state=='Running']"
 
     - name: Azure PowerShell
-      uses: azure/powershell
+      uses: azure/powershell@v1
       with:
         azPSVersion: 'latest'
         inlineScript: |
