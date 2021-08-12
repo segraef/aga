@@ -11,7 +11,7 @@ jobs:
       with:
         creds: ${{secrets.AZURE_CREDENTIALS}}
         enable-AzPSSession: true
-        
+
     - name: Azure CLI
       run: |
         az webapp list --query "[?state=='Running']"
